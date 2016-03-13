@@ -1,0 +1,54 @@
+<% extend 'layout.ect' %>
+
+<script>
+var git_status = function() {
+  $('#response-title').text('fetching status');
+  $('#response').text('(please stand by)');
+  $.get('git', function(data) {
+    $('#response-title').text('Current status of the server code');
+    $('#response').text(data);
+  });
+};
+
+var git_update = function() {
+  $('#response-title').text('updating code');
+  $('#response').text('(please stand by)');
+  $.ajax({
+    url : 'git',
+    data : '{}',
+    contentType : 'application/json',
+    type : 'PATCH',
+    dataType: 'text',
+    processData: false
+  }).done(function(data) {
+    $('#response-title').text('Results from updating code');
+    $('#response').text(data);
+  });
+};
+
+var server_restart = function() {
+  $('#response-title').text('RESTARTING SERVER');
+  $('#response').text('THIS HALTS THE SERVER.  THE SERVER WILL NOT RESPOND!  (You will need to refresh this page)');
+  $.ajax({
+    url : 'restart',
+    data : '{}',
+    contentType : 'application/json',
+    type : 'PUT',
+    dataType: 'text',
+    processData: false
+  });
+}
+</script>
+
+<h2>This page is for developers</h2>
+<p>(or the foolhardy and/or brave)</p>
+<p>It allows you to check if your server's code needs updating, to update it, and to restart it.</p>
+<button name='refresh-status' onclick='git_status()'>Status</button>
+<button name='update-server' onclick='git_update()'>Update</button>
+<button name='restart-server' onclick='server_restart()'>Restart</button>
+<h3 id='response-title'>TBD</h3>
+<pre id='response'>(watch this space)</pre>
+
+<script>
+git_status();
+</script>

@@ -1,0 +1,24 @@
+{
+  "name": "pi-node-server",
+  "version": "0.1.0",
+  "description": "Node (web) server tailored for running on Raspberry Pi",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heck/pi-node-server.git"
+  },
+  "author": "heck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/heck/pi-node-server/issues"
+  },
+  "homepage": "https://github.com/heck/pi-node-server#readme",
+  "dependencies": {
+    "ect": "^0.5.9",
+    "node-simple-router": "^0.10.0"
+  }
+}

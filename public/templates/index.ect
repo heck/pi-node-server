@@ -1,0 +1,12 @@
+<% extend 'layout.ect' %>
+
+<h2>Welcome!</h2>
+
+<!-- example of using a partial.  Starting '_' just a convention -->
+<% include '_hello.ect', { 'who': 'WORLD' } %>
+<!-- icons are at /icons.png.  Indexing is zero-based, column-major (column first) -->
+<%- global.app.router.get_icon(7,3) %> <%- global.app.router.get_icon(7,8) %>
+
+<!-- using the included spinner -->
+<div>Spinner example: </div>
+<div class="loading-spinner"></div>
