@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 var extend = require('util')._extend;
 
 module.exports = function(app) {
@@ -11,6 +12,7 @@ module.exports = function(app) {
   settings.port = 8080;
   settings.serverConfigDir = app.cwd+'/config';  // can be used to read other config files defined by app
   settings.localConfig = '';
+  settings.localSaveDir = '';  // directory where the server can save user data
 
   //
   // Read in platform-dependent settings from /config dir
@@ -54,6 +56,10 @@ module.exports = function(app) {
   } catch (e) {
     console.log("local config file not found or not accessible");
   }
+
+  // Set the local data directory to the directory of the local config file
+  settings.localSaveDir = path.dirname(localPath);
+  settings.localSaveDir += '/user';
 
   return settings;
 };
